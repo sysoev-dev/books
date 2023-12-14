@@ -1,0 +1,51 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo-link {
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav__link {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 5px 10px;
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 20px;
+  transition: all 0.25s;
+}
+
+.nav__link:hover {
+  background-color: #d5a158;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.nav__item:not(:last-child) {
+  margin-right: 15px;
+}
+
+.nav__user-box {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav__user-btn {
+  font-size: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
