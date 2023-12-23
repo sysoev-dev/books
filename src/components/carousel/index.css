@@ -1,6 +1,7 @@
 .carousel {
   position: relative;
   width: 100%;
+  margin-top: 10px;
 }
 
 .carousel__list li {
@@ -34,4 +35,12 @@
   padding: 0;
   list-style: none;
   transition: margin-left 250ms;
+}
+
+.carousel__title {
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.87);
 }

@@ -1,5 +1,5 @@
 .header {
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 
 .nav {
@@ -9,9 +9,9 @@
 }
 
 .nav__logo-link {
-  color: rgba(0, 0, 0, 0.87);
-  font-weight: 700;
-  font-size: 22px;
+  font-family: 'Playfair Display', serif;
+  color: rgba(0, 0, 0, 0.95);
+  font-size: 25px;
 }
 
 .nav__list {

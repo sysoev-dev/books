@@ -25,3 +25,18 @@
   margin: 0;
   margin-top: 5px;
 }
+
+.carousel-item__link {
+  position: absolute;
+  bottom: 0;
+  padding: 10px 20px;
+  color: rgb(222, 170, 108);
+  border: 1px solid rgb(222, 170, 108);
+  border-radius: 25px;
+  transition: all 0.3s;
+}
+
+.carousel-item__link:hover {
+  background-color: rgb(222, 170, 108);
+  color: rgba(0, 0, 0, 0.7);
+}

@@ -15,6 +15,7 @@ export default function Carousel({ children }) {
 
   return (
     <div className='carousel'>
+      <h3 className='carousel__title'>Бестселлеры 2023 года</h3>
       <div className='carousel__wrapper'>
         <ul
           style={{ marginLeft: `${carouselPosition}px` }}

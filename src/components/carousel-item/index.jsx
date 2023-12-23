@@ -10,6 +10,9 @@ export default function CarouselItem({ title, author, rating, imagePath }) {
         <Rating name='read-only' value={rating} readOnly size='small' />
         <h3 className='carousel-item__title'>{title}</h3>
         <p className='carousel-item__author'>{author}</p>
+        <a className='carousel-item__link' href='#'>
+          Купить
+        </a>
       </div>
     </li>
   );
