@@ -1,0 +1,37 @@
+.carousel {
+  position: relative;
+  width: 100%;
+}
+
+.carousel__list li {
+  width: 280px;
+  height: 200px;
+}
+
+.carousel__button-next {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 200px;
+  font-size: 0;
+  width: 40px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.carousel__wrapper {
+  width: 1200px;
+  overflow: hidden;
+}
+
+.carousel__list {
+  display: flex;
+  gap: 10px;
+  height: 200px;
+  width: 9999px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: margin-left 250ms;
+}

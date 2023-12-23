@@ -1,0 +1,33 @@
+.player {
+  position: relative;
+  width: 200px;
+  min-height: 310px;
+  background-color: #fff;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.player::after {
+  font-family: 'Playfair Display', serif;
+  content: 'Вы слушали';
+  display: block;
+  left: -65px;
+  top: 70px;
+  position: absolute;
+  transform: rotate(270deg);
+}
+
+.player__track {
+  font-family: 'Playfair Display', serif;
+}
+
+.player__author {
+  color: #555555;
+}
+
+.player__img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}

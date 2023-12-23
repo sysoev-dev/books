@@ -1,7 +1,6 @@
 import './index.css';
 import bookIcon from '../../assets/book.svg';
 import headphonesIcon from '../../assets/headphones.svg';
-import favoriteIcon from '../../assets/favorite.svg';
 import favoriteIconOutline from '../../assets/favorite-outline.svg';
 import basketIcon from '../../assets/basket.svg';
 import userIcon from '../../assets/user.svg';
