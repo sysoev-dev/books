@@ -29,7 +29,7 @@ function App() {
               <TopAuthor />
               <Player />
             </div>
-            <div className='polka'></div>
+            <div className='shelf-item'></div>
           </div>
           <Carousel>
             <CarouselItem
