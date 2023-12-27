@@ -1,13 +1,25 @@
 import './App.css';
+import { useState } from 'react';
 import Carousel from './components/carousel';
-import CarouselItem from './components/carousel-item';
 import Header from './components/header';
 import Player from './components/player';
 import SearchInput from './components/search-input';
 import TopAuthor from './components/top-author';
 import TopBook from './components/top-book';
 
+import { account, ID } from './lib/appwrite';
+
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+
+  async function login(email, password) {
+    await account.createEmailSession(email, password);
+    setLoggedInUser(await account.get());
+  }
+
   return (
     <>
       <div className='container'>
@@ -29,107 +41,61 @@ function App() {
             </div>
             <div className='shelf-item'></div>
           </div>
-          <Carousel>
-            <CarouselItem
-              title='Лучшие люди города'
-              author='Кожевина К.'
-              rating={3}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/dff/dff53b30c63e1eb983dd28ea1ce1b646/8eb6562b644ee607a241b0dd62f51329.jpg'
-            />
-            <CarouselItem
-              title='Изнанка'
-              author='Волкова Л.'
-              rating={2}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/ea6/ea6c8ee06183cdb463a8eb0bf8828cc2/161976164a6fef721491640843f4ea9e.jpg'
-            />
-            <CarouselItem
-              title='Легкий способ бросить страдать'
-              author='Гордон Е.'
-              rating={5}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/baf/baf4577e0cfbe21aa8dd0bb057dcc009/1e8bdd494d3c478144254eb389928f61.jpg'
-            />
-            <CarouselItem
-              title='Вечерняя звезда'
-              author='Соловьева Е.'
-              rating={4}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/3de/3de3ecc7a5fc6c76264445c3c8a99223/d198e3043fca56ff7bc4cf8e100a519c.jpg'
-            />
-            {/*  */}
-            <CarouselItem
-              title='Лучшие люди города'
-              author='Кожевина К.'
-              rating={3}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/dff/dff53b30c63e1eb983dd28ea1ce1b646/8eb6562b644ee607a241b0dd62f51329.jpg'
-            />
-            <CarouselItem
-              title='Изнанка'
-              author='Волкова Л.'
-              rating={2}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/ea6/ea6c8ee06183cdb463a8eb0bf8828cc2/161976164a6fef721491640843f4ea9e.jpg'
-            />
-            <CarouselItem
-              title='Легкий способ бросить страдать'
-              author='Гордон Е.'
-              rating={5}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/baf/baf4577e0cfbe21aa8dd0bb057dcc009/1e8bdd494d3c478144254eb389928f61.jpg'
-            />
-            <CarouselItem
-              title='Вечерняя звезда'
-              author='Соловьева Е.'
-              rating={4}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/3de/3de3ecc7a5fc6c76264445c3c8a99223/d198e3043fca56ff7bc4cf8e100a519c.jpg'
-            />
-            <CarouselItem
-              title='Лучшие люди города'
-              author='Кожевина К.'
-              rating={3}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/dff/dff53b30c63e1eb983dd28ea1ce1b646/8eb6562b644ee607a241b0dd62f51329.jpg'
-            />
-            <CarouselItem
-              title='Изнанка'
-              author='Волкова Л.'
-              rating={2}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/ea6/ea6c8ee06183cdb463a8eb0bf8828cc2/161976164a6fef721491640843f4ea9e.jpg'
-            />
-            <CarouselItem
-              title='Легкий способ бросить страдать'
-              author='Гордон Е.'
-              rating={5}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/baf/baf4577e0cfbe21aa8dd0bb057dcc009/1e8bdd494d3c478144254eb389928f61.jpg'
-            />
-            <CarouselItem
-              title='Вечерняя звезда'
-              author='Соловьева Е.'
-              rating={4}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/3de/3de3ecc7a5fc6c76264445c3c8a99223/d198e3043fca56ff7bc4cf8e100a519c.jpg'
-            />
-            {/*  */}
-            <CarouselItem
-              title='Лучшие люди города'
-              author='Кожевина К.'
-              rating={3}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/dff/dff53b30c63e1eb983dd28ea1ce1b646/8eb6562b644ee607a241b0dd62f51329.jpg'
-            />
-            <CarouselItem
-              title='Изнанка'
-              author='Волкова Л.'
-              rating={2}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/ea6/ea6c8ee06183cdb463a8eb0bf8828cc2/161976164a6fef721491640843f4ea9e.jpg'
-            />
-            <CarouselItem
-              title='Легкий способ бросить страдать'
-              author='Гордон Е.'
-              rating={5}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/baf/baf4577e0cfbe21aa8dd0bb057dcc009/1e8bdd494d3c478144254eb389928f61.jpg'
-            />
-            <CarouselItem
-              title='Вечерняя звезда'
-              author='Соловьева Е.'
-              rating={4}
-              imagePath='https://ndc.book24.ru/resize/440x568/iblock/3de/3de3ecc7a5fc6c76264445c3c8a99223/d198e3043fca56ff7bc4cf8e100a519c.jpg'
-            />
-          </Carousel>
+          <Carousel />
         </main>
+
+        <div>
+          <p>
+            {loggedInUser
+              ? `Logged in as ${loggedInUser.name}`
+              : 'Not logged in'}
+          </p>
+
+          <form>
+            <input
+              type='email'
+              placeholder='Email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type='password'
+              placeholder='Password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input
+              type='text'
+              placeholder='Name'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+
+            <button type='button' onClick={() => login(email, password)}>
+              Login
+            </button>
+
+            <button
+              type='button'
+              onClick={async () => {
+                await account.create(ID.unique(), email, password, name);
+                login(email, password);
+              }}
+            >
+              Register
+            </button>
+
+            <button
+              type='button'
+              onClick={async () => {
+                await account.deleteSession('current');
+                setLoggedInUser(null);
+              }}
+            >
+              Logout
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );
