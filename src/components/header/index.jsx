@@ -4,7 +4,9 @@ import headphonesIcon from '../../assets/headphones.svg';
 import favoriteIconOutline from '../../assets/favorite-outline.svg';
 import basketIcon from '../../assets/basket.svg';
 import userIcon from '../../assets/user.svg';
+import loginIcon from '../../assets/login.svg';
 import dotsIcon from '../../assets/dots.svg';
+import BasicModal from '../modal';
 
 export default function Header() {
   return (
@@ -36,10 +38,11 @@ export default function Header() {
             <img src={basketIcon} alt='Корзина покупок' />
             Корзина
           </button>
-          <button className='nav__user-btn nav__favorite-btn'>
-            <img src={userIcon} alt='Иконка профиля' />
+          {/* <button className='nav__user-btn nav__favorite-btn'>
+            <img src={loginIcon} alt='Иконка профиля' />
             Профиль
-          </button>
+          </button> */}
+          <BasicModal />
           <button className='nav__user-btn nav__favorite-btn'>
             <img src={dotsIcon} alt='Настройки' />
             Настройки
