@@ -1,49 +1,70 @@
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
-export default function LoginForm() {
+export default function LoginForm({ submitForm }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleSubmitForm(e) {
+    e.preventDefault();
+    submitForm(email, password);
+  }
+
   return (
     <Box
-      component='form'
-      mt={5}
+      onSubmit={handleSubmitForm}
       sx={{
-        width: 300,
-        margin: '0 auto',
+        width: 500,
+        maxWidth: '100%',
       }}
-      noValidate
-      autoComplete='off'
+      component='form'
     >
-      <Typography
-        align='center'
-        id='modal-modal-title'
-        variant='h6'
-        component='h3'
-      >
-        Вход
-      </Typography>
+      <h3>Вход в аккаунт</h3>
       <TextField
-        sx={{ marginBottom: 0.5 }}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         fullWidth
         id='standard-basic'
-        label='Логин:'
+        label='Ваш еmail:'
         variant='standard'
+        margin='dense'
       />
       <TextField
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         fullWidth
-        id='outlined-password-input'
-        label='Пароль'
         type='password'
-        autoComplete='current-password'
+        id='standard-basic'
+        label='Ваш пароль'
         variant='standard'
+        margin='dense'
       />
 
-      <Stack mt={2} spacing={2} justifyContent={'center'} direction='row'>
-        <Button variant='contained'>Войти</Button>
+      <Stack mt={1.5} spacing={2} direction='row'>
+        <Button type='submit' sx={{ mt: 2 }} variant='contained'>
+          Войти
+        </Button>
         <Button variant='outlined'>Регистрация</Button>
       </Stack>
     </Box>
   );
 }
+
+/* <form action='#' className='login-form'>
+      <input
+        type='email'
+        placeholder='Email'
+        // value={email}
+        // onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type='password'
+        placeholder='Password'
+        // value={password}
+        // onChange={(e) => setPassword(e.target.value)}
+      />
+    </form> */

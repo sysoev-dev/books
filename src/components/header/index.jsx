@@ -1,11 +1,11 @@
 import './index.css';
 import bookIcon from '../../assets/book.svg';
 import headphonesIcon from '../../assets/headphones.svg';
-import favoriteIconOutline from '../../assets/favorite-outline.svg';
-import basketIcon from '../../assets/basket.svg';
-import userIcon from '../../assets/user.svg';
-import loginIcon from '../../assets/login.svg';
-import dotsIcon from '../../assets/dots.svg';
+
+import IconButton from '@mui/material/IconButton';
+import ShoppingCart from '@mui/icons-material/ShoppingCart';
+import Book from '@mui/icons-material/Book';
+import MoreVert from '@mui/icons-material/MoreVert';
 import BasicModal from '../modal';
 
 export default function Header() {
@@ -30,23 +30,16 @@ export default function Header() {
           </li>
         </ul>
         <div className='nav__user-box'>
-          <button className='nav__user-btn nav__favorite-btn'>
-            <img src={favoriteIconOutline} alt='Избранное' />
-            Добавить в Избранное
-          </button>
-          <button className='nav__user-btn nav__favorite-btn'>
-            <img src={basketIcon} alt='Корзина покупок' />
-            Корзина
-          </button>
-          {/* <button className='nav__user-btn nav__favorite-btn'>
-            <img src={loginIcon} alt='Иконка профиля' />
-            Профиль
-          </button> */}
+          <IconButton aria-label='Favorites book'>
+            <Book />
+          </IconButton>
+          <IconButton aria-label='Shoping card'>
+            <ShoppingCart />
+          </IconButton>
           <BasicModal />
-          <button className='nav__user-btn nav__favorite-btn'>
-            <img src={dotsIcon} alt='Настройки' />
-            Настройки
-          </button>
+          <IconButton aria-label='Other buttone'>
+            <MoreVert />
+          </IconButton>
         </div>
       </nav>
     </header>
