@@ -15,7 +15,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: 'background.paper',
+  bgcolor: 'rgb(249, 243, 238);',
   borderRadius: 5,
   boxShadow: 20,
   p: 4,
@@ -53,7 +53,11 @@ export default function BasicModal() {
         aria-describedby='modal-modal-description'
       >
         <Box sx={style}>
-          <IconButton onClick={handleClose} aria-label='Close modal'>
+          <IconButton
+            sx={{ position: 'absolute', top: 10, right: 10 }}
+            onClick={handleClose}
+            aria-label='Close modal'
+          >
             <Close />
           </IconButton>
           <p>
