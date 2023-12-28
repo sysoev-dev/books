@@ -4,10 +4,11 @@ import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
 import LoginIcon from '@mui/icons-material/Login';
 import LoginForm from '../login-form';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+// import AccountCircle from '@mui/icons-material/AccountCircle';
 import Close from '@mui/icons-material/Close';
 import LoginUser from '../login-user';
 import { account, ID } from '../../lib/appwrite';
+import { userAvatar } from '../../lib/appwrite';
 
 const style = {
   position: 'absolute',
@@ -43,7 +44,15 @@ export default function BasicModal() {
   return (
     <div>
       <IconButton onClick={handleOpen} aria-label='Modal open'>
-        {loggedInUser ? <AccountCircle /> : <LoginIcon />}
+        {loggedInUser ? (
+          <img
+            className='nav__user-avatar'
+            src={userAvatar}
+            alt='User Avatar'
+          />
+        ) : (
+          <LoginIcon />
+        )}
       </IconButton>
 
       <Modal
@@ -86,23 +95,7 @@ export default function BasicModal() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <input
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <input
-            type='text'
-            placeholder='Name'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-
-          <button type='button' onClick={() => login(email, password)}>
-            Login
-          </button>
-
+          
           <button
             type='button'
             onClick={async () => {
@@ -113,15 +106,7 @@ export default function BasicModal() {
             Register
           </button>
 
-          <button
-            type='button'
-            onClick={async () => {
-              await account.deleteSession('current');
-              setLoggedInUser(null);
-            }}
-          >
-            Logout
-          </button>
+          
         </form>
       </div>
       */}
