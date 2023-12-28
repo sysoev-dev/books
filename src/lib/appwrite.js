@@ -1,7 +1,8 @@
 import { Client, Account, Avatars } from 'appwrite';
 
 export const client = new Client();
-export const avatars = new Avatars(client);
+const avatars = new Avatars(client);
+
 client
   .setEndpoint('https://cloud.appwrite.io/v1')
   .setProject('658c3422865fec49a10e');
