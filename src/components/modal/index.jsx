@@ -4,6 +4,7 @@ import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
 import LoginIcon from '@mui/icons-material/Login';
 import LoginForm from '../login-form';
+import RegisterForm from '../register-form';
 // import AccountCircle from '@mui/icons-material/AccountCircle';
 import Close from '@mui/icons-material/Close';
 import LoginUser from '../login-user';
@@ -25,24 +26,39 @@ const style = {
 export default function BasicModal() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setSignUp(false);
+  };
+
+  const [signUp, setSignUp] = useState(false);
 
   const [loggedInUser, setLoggedInUser] = useState(null);
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
 
   async function login(email, password) {
     await account.createEmailSession(email, password);
     setLoggedInUser(await account.get());
   }
 
-  function handleSubmitLoginForm(email, password) {
+  function handleSubmitLoginForm() {
+    login(email, password);
+  }
+
+  async function handleSubmitRegisterForm() {
+    const registration = await account.create(
+      ID.unique(),
+      email,
+      password,
+      name
+    );
     login(email, password);
   }
 
   return (
-    <div>
+    <>
       <IconButton onClick={handleOpen} aria-label='Modal open'>
         {loggedInUser ? (
           <img
@@ -55,12 +71,7 @@ export default function BasicModal() {
         )}
       </IconButton>
 
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='modal-modal-title'
-        aria-describedby='modal-modal-description'
-      >
+      <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <IconButton
             sx={{ position: 'absolute', top: 10, right: 10 }}
@@ -69,47 +80,38 @@ export default function BasicModal() {
           >
             <Close />
           </IconButton>
-          <p>
-            {loggedInUser ? (
-              <LoginUser
-                userName={loggedInUser.name}
-                logOut={async () => {
-                  await account.deleteSession('current');
-                  setLoggedInUser(null);
-                }}
-              />
-            ) : (
-              <LoginForm submitForm={handleSubmitLoginForm} />
-            )}
-          </p>
+
+          {loggedInUser ? (
+            <LoginUser
+              userName={loggedInUser.name}
+              logOut={async () => {
+                await account.deleteSession('current');
+                setLoggedInUser(null);
+              }}
+            />
+          ) : signUp ? (
+            <RegisterForm
+              email={email}
+              password={password}
+              name={name}
+              setEmail={setEmail}
+              setPassword={setPassword}
+              setName={setName}
+              submitForm={handleSubmitRegisterForm}
+              setSignUp={setSignUp}
+            />
+          ) : (
+            <LoginForm
+              email={email}
+              password={password}
+              setEmail={setEmail}
+              setPassword={setPassword}
+              submitForm={handleSubmitLoginForm}
+              setSignUp={setSignUp}
+            />
+          )}
         </Box>
       </Modal>
-      {/* 
-      <div>
-       
-
-        <form>
-          <input
-            type='email'
-            placeholder='Email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          
-          <button
-            type='button'
-            onClick={async () => {
-              await account.create(ID.unique(), email, password, name);
-              login(email, password);
-            }}
-          >
-            Register
-          </button>
-
-          
-        </form>
-      </div>
-      */}
-    </div>
+    </>
   );
 }

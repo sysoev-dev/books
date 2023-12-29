@@ -4,21 +4,19 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
-export default function LoginForm({
+export default function RegisterForm({
   email,
   password,
+  name,
   setEmail,
   setPassword,
+  setName,
   submitForm,
   setSignUp,
 }) {
   function handleSubmitForm(e) {
     e.preventDefault();
     submitForm();
-  }
-
-  function handleClickSignUp() {
-    setSignUp(true);
   }
 
   return (
@@ -30,7 +28,7 @@ export default function LoginForm({
       }}
       component='form'
     >
-      <h3>Вход в аккаунт</h3>
+      <h3>Регистрация аккаунта</h3>
       <TextField
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -48,13 +46,21 @@ export default function LoginForm({
         variant='standard'
         margin='dense'
       />
+      <TextField
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        fullWidth
+        label='Ваше имя'
+        variant='standard'
+        margin='dense'
+      />
 
       <Stack mt={1.5} spacing={2} direction='row'>
         <Button type='submit' sx={{ mt: 2 }} variant='contained'>
-          Войти
+          Создать аккаунт
         </Button>
-        <Button onClick={handleClickSignUp} variant='outlined'>
-          Регистрация
+        <Button onClick={() => setSignUp(false)} variant='outlined'>
+          Уже есть аккаунт
         </Button>
       </Stack>
     </Box>
