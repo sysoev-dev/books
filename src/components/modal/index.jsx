@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
 import LoginIcon from '@mui/icons-material/Login';
 import LoginForm from '../login-form';
 import RegisterForm from '../register-form';
-// import AccountCircle from '@mui/icons-material/AccountCircle';
 import Close from '@mui/icons-material/Close';
 import LoginUser from '../login-user';
 import { account, ID } from '../../lib/appwrite';
 import { userAvatar } from '../../lib/appwrite';
+import { useUser } from '../../lib/context/user';
 
 const style = {
   position: 'absolute',
@@ -24,43 +24,39 @@ const style = {
 };
 
 export default function BasicModal() {
+  const user = useUser();
   const [open, setOpen] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+  const [signUp, setSignUp] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     setSignUp(false);
   };
 
-  const [signUp, setSignUp] = useState(false);
-
-  const [loggedInUser, setLoggedInUser] = useState(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-
-  async function login(email, password) {
-    await account.createEmailSession(email, password);
-    setLoggedInUser(await account.get());
-  }
+  useEffect(() => {
+    if (user?.current?.name) {
+      setIsAuth(true);
+    }
+  }, [user]);
 
   function handleSubmitLoginForm() {
-    login(email, password);
+    user.login(email, password);
   }
 
   async function handleSubmitRegisterForm() {
-    const registration = await account.create(
-      ID.unique(),
-      email,
-      password,
-      name
-    );
-    login(email, password);
+    await account.create(ID.unique(), email, password, name);
+    user.login(email, password);
   }
 
   return (
     <>
       <IconButton onClick={handleOpen} aria-label='Modal open'>
-        {loggedInUser ? (
+        {isAuth ? (
           <img
             className='nav__user-avatar'
             src={userAvatar}
@@ -81,12 +77,12 @@ export default function BasicModal() {
             <Close />
           </IconButton>
 
-          {loggedInUser ? (
+          {isAuth ? (
             <LoginUser
-              userName={loggedInUser.name}
+              userName={user?.current?.name}
               logOut={async () => {
                 await account.deleteSession('current');
-                setLoggedInUser(null);
+                setIsAuth(false);
               }}
             />
           ) : signUp ? (

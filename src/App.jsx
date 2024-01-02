@@ -5,10 +5,11 @@ import Player from './components/player';
 import SearchInput from './components/search-input';
 import TopAuthor from './components/top-author';
 import TopBook from './components/top-book';
+import { UserProvider } from './lib/context/user';
 
 function App() {
   return (
-    <>
+    <UserProvider>
       <div className='container'>
         <h1 className='visually-hidden'>Books - Книжный интернет-магазин</h1>
         <Header />
@@ -31,7 +32,7 @@ function App() {
           <Carousel />
         </main>
       </div>
-    </>
+    </UserProvider>
   );
 }
 
