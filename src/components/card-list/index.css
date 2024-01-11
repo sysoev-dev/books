@@ -1,0 +1,21 @@
+.card-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card-list__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-list__item:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.card-list__image {
+  width: 50px;
+  height: 80px;
+  object-fit: cover;
+}

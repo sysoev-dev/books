@@ -1,12 +1,11 @@
 import './index.css';
 import bookIcon from '../../assets/book.svg';
 import headphonesIcon from '../../assets/headphones.svg';
-
 import IconButton from '@mui/material/IconButton';
-import ShoppingCart from '@mui/icons-material/ShoppingCart';
 import Book from '@mui/icons-material/Book';
 import MoreVert from '@mui/icons-material/MoreVert';
 import BasicModal from '../modal';
+import ShopingCard from '../shoping-card';
 
 export default function Header() {
   return (
@@ -33,9 +32,7 @@ export default function Header() {
           <IconButton aria-label='Favorites book'>
             <Book />
           </IconButton>
-          <IconButton aria-label='Shoping card'>
-            <ShoppingCart />
-          </IconButton>
+          <ShopingCard />
           <BasicModal />
           <IconButton aria-label='Other buttone'>
             <MoreVert />
