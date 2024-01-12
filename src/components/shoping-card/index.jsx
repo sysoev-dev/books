@@ -14,9 +14,11 @@ export default function ShopingCard() {
   const cardItemsCount = card.length;
 
   const [anchorEl, setAnchorEl] = useState(null);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -24,11 +26,12 @@ export default function ShopingCard() {
   const id = open ? 'simple-popover' : undefined;
 
   return (
-    <IconButton onClick={handleClick} aria-label='Shoping card'>
-      <Badge badgeContent={cardItemsCount || 0} color='primary'>
-        <ShoppingCart />
-      </Badge>
-
+    <>
+      <IconButton onClick={handleClick} aria-label='Shoping card'>
+        <Badge badgeContent={cardItemsCount || 0} color='primary'>
+          <ShoppingCart />
+        </Badge>
+      </IconButton>
       <Popover
         className='popover__card'
         id={id}
@@ -47,7 +50,7 @@ export default function ShopingCard() {
         <div className='popover__card__contant'>
           <IconButton
             sx={{ position: 'absolute', top: 10, right: 10 }}
-            onClick={() => console.log('close')}
+            onClick={handleClose}
             aria-label='Close'
           >
             <Close />
@@ -56,6 +59,6 @@ export default function ShopingCard() {
           <CardList />
         </div>
       </Popover>
-    </IconButton>
+    </>
   );
 }
