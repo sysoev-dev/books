@@ -2,12 +2,17 @@ import IconButton from '@mui/material/IconButton';
 import Close from '@mui/icons-material/Close';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
 import Popover from '@mui/material/Popover';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import CardList from '../card-list';
+import Badge from '@mui/material/Badge';
+import { CardContext } from '../../lib/context/card';
 
 import './index.css';
 
 export default function ShopingCard() {
+  const card = useContext(CardContext);
+  const cardItemsCount = card.length;
+
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -20,18 +25,23 @@ export default function ShopingCard() {
 
   return (
     <IconButton onClick={handleClick} aria-label='Shoping card'>
-      <ShoppingCart />
+      <Badge badgeContent={cardItemsCount || 0} color='primary'>
+        <ShoppingCart />
+      </Badge>
+
       <Popover
         className='popover__card'
         id={id}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
-        anchorReference='anchorPosition'
-        anchorPosition={{ top: 130, left: 1020 }}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
         }}
       >
         <div className='popover__card__contant'>

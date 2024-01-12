@@ -8,14 +8,23 @@
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.card-list__item:not(:last-child) {
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
 .card-list__image {
   width: 50px;
   height: 80px;
   object-fit: cover;
+}
+
+.card-list__btn-delete {
+  border: none;
+  outline: none;
+  margin-left: auto;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.card-list__item:hover .card-list__btn-delete {
+  visibility: visible;
 }

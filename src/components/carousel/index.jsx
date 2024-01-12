@@ -7,7 +7,6 @@ export default function Carousel() {
   const [carouselPosition, setCarouselPosition] = useState(0);
 
   function handleBtnClick() {
-    // Magic number ;(
     if (carouselPosition <= -3479) {
       return;
     }
