@@ -45,7 +45,15 @@ export default function BasicModal() {
   }, [user]);
 
   function handleSubmitLoginForm() {
-    user.login(email, password);
+    const isLogin = user.login(email, password);
+    isLogin.then(
+      function () {
+        setIsAuth(true);
+      },
+      function (error) {
+        console.log(error);
+      }
+    );
   }
 
   async function handleSubmitRegisterForm() {
